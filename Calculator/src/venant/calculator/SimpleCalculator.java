@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import java.util.ResourceBundle;
 //Calculator done by SIMPIGIRWA Venant
 
 public class SimpleCalculator implements ActionListener {
@@ -14,7 +13,7 @@ public class SimpleCalculator implements ActionListener {
 	private char op;
 	private String firstOperand="0";
 	private String secondOperand="0";
-	private String res;
+	private String res=null;
 	private double ans;
 	//All  required fields
 	JFrame frame;
@@ -128,11 +127,7 @@ public class SimpleCalculator implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		
-			
-		
-
-		if(e.getSource()==addButton) {
+			if(e.getSource()==addButton) {
 			res=answerTextField.getText();
 			answerTextField.setText(res+addButton.getText());
 		}
@@ -200,12 +195,13 @@ public class SimpleCalculator implements ActionListener {
 		if(e.getSource()==equalButton) {
 			
 			res=answerTextField.getText();
-			char []resArray=res.toCharArray();
 			if(res.contains("=")) {
 				answerTextField.setText(res);
 				
 			}
+			
 			else {
+				char []resArray=res.toCharArray();
 				res=res+"=";
 			for(int i=0;i<resArray.length;i++) {
 
@@ -249,13 +245,13 @@ public class SimpleCalculator implements ActionListener {
 			
 			answerTextField.setText(res+ans);
 		}
-			
+				
 		}
 	
 		if(e.getSource()==clearButton) {
 			answerTextField.setText("");
-			ResourceBundle.clearCache();
-			
+			SimpleCalculator calculator=new SimpleCalculator();
+			frame.dispose();
 		}
 		}
 	
